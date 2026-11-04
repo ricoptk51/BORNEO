@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PO. BORNEO TRANS — Pesan Tiket Bus Listrik Pontianak ↔ Sintang</title>
+  <meta name="description"
+    content="Pesan tiket bus listrik Pontianak - Sintang secara online. Bayar lewat Virtual Account, lalu pilih kursi. Tersedia kabin sleeper Solitaire dan kursi eksekutif Vip Royal." />
+  <meta name="keywords"
+    content="tiket bus Kalimantan, PO Borneo Trans, PT Borneo Trans Mandiri, bus listrik Pontianak Sintang, tiket sleeper, kursi eksekutif" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E⚡%3C/text%3E%3C/svg%3E" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="PO. BORNEO TRANS — Bus Listrik Antar Kota Pontianak ↔ Sintang" />
+  <meta property="og:description"
+    content="Bus listrik antar kota pertama di Pulau Kalimantan. Tersedia kabin sleeper Solitaire dan kursi eksekutif Vip Royal." />
+</head>
+
+<body>
+
+  <!-- ======== TOAST CONTAINER ======== -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- ======== NAVBAR ======== -->
+  <nav id="navbar">
+    <div class="navbar-inner">
+      <a href="#beranda" class="navbar-logo">
+        <div class="logo-icon" style="font-size:1.3rem">⚡</div>
+        <div class="logo-text">
+          <span class="po-label">PT. BORNEO TRANS MANDIRI</span>
+          <span class="po-name">PO. BORNEO TRANS</span>
+          <span class="po-sub">Bus Listrik Antar Kota — Pontianak ↔ Sintang</span>
+        </div>
+      </a>
+
+      <div class="navbar-menu">
+        <a href="#beranda" class="nav-link active" data-nav="beranda">🏠 Beranda</a>
+        <a href="pesan.html" class="nav-link">🎫 Pesan Tiket</a>
+        <a href="#menjangkau-kami" class="nav-link" data-nav="menjangkau-kami">📞 Hubungi Kami</a>
+        <a href="#fasilitas" class="nav-link" data-nav="fasilitas">🚌 Fasilitas</a>
+        <a href="#galeri" class="nav-link" data-nav="galeri">🖼️ Galeri</a>
+        <a href="#cek-tiket" class="nav-link" data-nav="cek-tiket">🔍 Cek Tiket</a>
+        <a href="#faq" class="nav-link" data-nav="faq">❓ Tanya Jawab</a>
+        <a href="#" class="nav-link" id="navVideoBtn" onclick="openVideoModal(); return false;">🎬 Cara Pesan</a>
+      </div>
+
+      <div class="navbar-actions">
+        <button class="btn-admin-nav" onclick="goToAdmin()">🔐 Portal Admin</button>
+        <button class="hamburger" id="hamburger" aria-label="Buka menu" onclick="toggleMobileMenu()">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#beranda" class="mobile-nav-link" onclick="closeMobileMenu()">🏠 Beranda</a>
+    <a href="pesan.html" class="mobile-nav-link">🎫 Pesan Tiket</a>
+    <a href="#menjangkau-kami" class="mobile-nav-link" onclick="closeMobileMenu()">📞 Hubungi Kami & Kantor</a>
+    <a href="#fasilitas" class="mobile-nav-link" onclick="closeMobileMenu()">🚌 Armada & Fasilitas</a>
+    <a href="#cek-tiket" class="mobile-nav-link" onclick="closeMobileMenu()">🔍 Cek Tiket</a>
+    <a href="#galeri" class="mobile-nav-link" onclick="closeMobileMenu()">🖼️ Galeri</a>
+    <a href="#faq" class="mobile-nav-link" onclick="closeMobileMenu()">❓ Tanya Jawab</a>
+    <a href="#" class="mobile-nav-link" onclick="openVideoModal(); closeMobileMenu(); return false;">🎬 Cara Pesan Tiket</a>
+    <button class="btn-primary btn mt-2" onclick="goToAdmin()" style="width:100%">🔐 Portal Admin & Agen</button>
+  </div>
+
+  <!-- ======== HERO SECTION ======== -->
+  <section class="hero" id="beranda">
+    <div class="hero-particles" id="heroParticles"></div>
+    <div class="container hero-content" style="width:100%">
+      <div class="hero-grid">
+        <!-- Left: Text -->
+        <div>
+          <div class="hero-badge animate-fadeInUp">
+            ⚡ &nbsp; Bus Listrik Antar Kota Pertama di Pulau Kalimantan
+          </div>
+          <h1 class="hero-title animate-fadeInUp animate-delay-1" style="line-height:1.2;margin-bottom:8px">
+            Pesan Tiket Bus Listrik<br />
+            <span class="gradient-text">Pontianak ↔ Sintang</span>
+          </h1>
+          <div class="animate-fadeInUp animate-delay-1"
+            style="font-size:1rem;font-weight:700;letter-spacing:0.02em;color:var(--silver-600);margin-bottom:14px;display:flex;align-items:center;gap:8px">
+            <span>Aman</span> • <span>Nyaman</span> • <span>Tepat Waktu</span>
+          </div>
+          <p class="hero-subtitle animate-fadeInUp animate-delay-2" style="max-width:580px;font-size:1.05rem;line-height:1.7">
+            Bus listrik tanpa asap dan tanpa bising, untuk perjalanan Pontianak ke Sintang selama ±10 jam.
+            Pilih antara <strong>kabin sleeper Solitaire</strong> atau <strong>kursi eksekutif Vip Royal</strong>.
+          </p>
+          <div class="flex gap-2 animate-fadeInUp animate-delay-3" style="flex-wrap:wrap;margin-bottom:28px">
+            <a href="pesan.html" class="btn btn-gold btn-lg">
+              🎫 Pesan Tiket Sekarang
+            </a>
+            <a href="#menjangkau-kami" class="btn btn-outline-silver btn-lg">
+              📞 Hubungi Kami
+            </a>
+          </div>
+          <!-- 4 informasi singkat -->
+          <div class="hero-stats animate-fadeInUp animate-delay-3" style="grid-template-columns:repeat(4,1fr)">
+            <div class="hero-stat" style="text-align:center">
+              <div class="num" style="font-size:1.2rem">⚡ 100%</div>
+              <div class="lbl">Bus Listrik</div>
+            </div>
+            <div class="hero-stat" style="text-align:center">
+              <div class="num" style="font-size:1.2rem">💺 2 Kelas</div>
+              <div class="lbl">Pilihan Kursi</div>
+            </div>
+            <div class="hero-stat" style="text-align:center">
+              <div class="num" style="font-size:1.2rem">🛡️ Aman</div>
+              <div class="lbl">Prioritas Utama</div>
+            </div>
+            <div class="hero-stat" style="text-align:center">
+              <div class="num" style="font-size:1.2rem">⏱️ Tepat Waktu</div>
+              <div class="lbl">Setiap Perjalanan</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Quick Search -->
+        <div class="quick-search-card animate-fadeInUp animate-delay-2">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+            <span style="font-size:1.5rem">🔎</span>
+            <div>
+              <h3 style="margin:0;font-size:1.15rem">Cari & Pesan Tiket</h3>
+              <p style="margin:0;font-size:0.85rem;color:var(--silver-500)">Rute Pontianak ↔ Sintang (±10 jam)</p>
+            </div>
+          </div>
+          <form id="heroSearchForm" onsubmit="handleHeroSearch(event)">
+            <div style="display:flex;flex-direction:column;gap:14px">
+              <div class="form-group">
+                <label class="form-label">Mau ke mana?</label>
+                <select class="form-select" id="heroRoute" required>
+                  <option value="">— Pilih Rute —</option>
+                </select>
+              </div>
+              <div class="quick-search-grid">
+                <div class="form-group">
+                  <label class="form-label">Tanggal Berangkat</label>
+                  <input type="date" class="form-input" id="heroDate" required />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Jumlah Tiket</label>
+                  <select class="form-select" id="heroSeats">
+                    <option value="1">1 Tiket</option>
+                    <option value="2">2 Tiket</option>
+                    <option value="3">3 Tiket</option>
+                    <option value="4">4 Tiket</option>
+                  </select>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-gold btn-lg w-full" style="font-weight:800">
+                🔎 Cari Jadwal Keberangkatan
+              </button>
+              <p style="margin:0;font-size:0.8rem;color:var(--silver-500);text-align:center">
+                💳 Bayar lewat Virtual Account, baru pilih kursi
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== SECTION: DAPATKAN KEMUDAHAN UNTUK MENJANGKAU KAMI ======== -->
+  <section class="reach-section" id="menjangkau-kami">
+    <div class="container">
+      <div class="section-header" style="text-align:center;margin-bottom:48px">
+        <div class="section-tag">
+          ✨ Layanan Resmi
+        </div>
+        <h2 class="section-title" style="font-size:2.1rem">
+          Hubungi & Pesan Tiket
+        </h2>
+        <p class="section-subtitle" style="max-width:700px;margin:0 auto;font-size:1.05rem">
+          Chat kami di WhatsApp atau datang ke kantor terdekat. Kami siap membantu setiap hari.
+        </p>
+      </div>
+
+      <div class="reach-grid">
+        <!-- Left: Official Marketing Poster Display -->
+        <div class="reach-poster-card">
+          <img src="assets/images/contact_info.jpg" alt="Poster informasi kontak PO Borneo Trans" class="reach-poster-img" />
+          <div style="padding:16px 20px;background:#fff;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--silver-200)">
+            <div>
+              <div style="font-weight:800;color:var(--silver-900);font-size:0.95rem">PT. BORNEO TRANS MANDIRI</div>
+              <div style="font-size:0.8rem;color:var(--silver-500)">PO. BORNEO TRANS — Pontianak ↔ Sintang</div>
+            </div>
+            <a href="assets/images/contact_info.jpg" target="_blank" class="btn btn-outline-silver btn-sm">
+              🔍 Lihat Poster
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Interactive Contact & Ticketing Cards -->
+        <div>
+          <!-- 1. ONLINE TICKETING -->
+          <div class="reach-card">
+            <div class="reach-card-title">
+              <span style="font-size:1.5rem">📲</span>
+              <span>Pesan via WhatsApp</span>
+            </div>
+            <div class="reach-contact-list">
+              <div class="reach-contact-item">
+                <div class="reach-contact-label">
+                  <span>📍 Pontianak</span>
+                </div>
+                <div class="reach-contact-val">0823-9539-2233</div>
+                <a href="https://wa.me/6282395392233?text=Halo%20Borneo%20Trans%20Pontianak,%20saya%20ingin%20pesan%20tiket%20bis%20listrik"
+                   target="_blank" rel="noopener" class="reach-wa-btn">
+                  💬 Chat WA
+                </a>
+              </div>
+              <div class="reach-contact-item">
+                <div class="reach-contact-label">
+                  <span>📍 Sintang</span>
+                </div>
+                <div class="reach-contact-val">0823-9539-2229</div>
+                <a href="https://wa.me/6282395392229?text=Halo%20Borneo%20Trans%20Sintang,%20saya%20ingin%20pesan%20tiket%20bis%20listrik"
+                   target="_blank" rel="noopener" class="reach-wa-btn">
+                  💬 Chat WA
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. OFFLINE TICKETING (KANTOR PEMASARAN) -->
+          <div class="reach-card">
+            <div class="reach-card-title">
+              <span style="font-size:1.5rem">🏢</span>
+              <span>Kantor & Loket</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <div class="reach-office-item">
+                <div style="font-weight:800;color:var(--silver-900);font-size:0.95rem;margin-bottom:4px">
+                  🏛️ Kantor Pontianak
+                </div>
+                <div style="color:var(--silver-600);font-size:0.875rem;line-height:1.6">
+                  Jl. Sungai Raya Ruko 1-5 Depan RS Sudarso Samping Terminal Sudarso, KUBU RAYA
+                </div>
+              </div>
+              <div class="reach-office-item">
+                <div style="font-weight:800;color:var(--silver-900);font-size:0.95rem;margin-bottom:4px">
+                  🏛️ Kantor Sintang
+                </div>
+                <div style="color:var(--silver-600);font-size:0.875rem;line-height:1.6">
+                  Jl. PKP Mujahidin (Sebelum Tugu BI Samping Kopi Aceh)
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. DAPATKAN INFORMASI KAMI (SOSIAL MEDIA) -->
+          <div class="reach-card">
+            <div class="reach-card-title">
+              <span style="font-size:1.5rem">📱</span>
+              <span>Ikuti Media Sosial Kami</span>
+            </div>
+            <div class="reach-social-grid">
+              <a href="https://instagram.com/borneo_trans_kalbar" target="_blank" rel="noopener" class="reach-social-btn">
+                <span style="font-size:1.3rem">📷</span>
+                <div>
+                  <div style="font-size:0.75rem;opacity:0.7">TikTok & Instagram</div>
+                  <div>@borneo_trans_kalbar</div>
+                </div>
+              </a>
+              <a href="https://instagram.com/borneotrans.stg" target="_blank" rel="noopener" class="reach-social-btn">
+                <span style="font-size:1.3rem">📷</span>
+                <div>
+                  <div style="font-size:0.75rem;opacity:0.7">TikTok & Instagram</div>
+                  <div>@borneotrans.stg</div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== FACILITIES SECTION (MATCHING IMAGE 3) ======== -->
+  <section class="section" id="fasilitas" style="background:white">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Armada & Fasilitas</div>
+        <h2 class="section-title">Kelas Kursi & Fasilitas Bus</h2>
+        <p class="section-subtitle">
+          Satu armada bus listrik, dua pilihan kelas. Pilih yang paling nyaman untuk perjalanan Anda.
+        </p>
+      </div>
+
+      <!-- Denah kursi -->
+      <div style="margin-bottom:40px;border-radius:16px;overflow:hidden;box-shadow:0 8px 24px rgba(15,23,42,0.08);border:1px solid var(--silver-200);background:var(--silver-50)">
+        <div style="padding:16px 24px;background:var(--silver-900);color:white;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="font-size:1.4rem">🚌</span>
+            <span style="font-weight:700;font-size:1.05rem">Denah Kursi & Interior Bus</span>
+          </div>
+          <span class="badge badge-gold">17 Kursi • Bus Listrik</span>
+        </div>
+        <center>
+          <img src="assets/images/seat_layout_interior.jpg" alt="Denah kursi Solitaire Business Class dan Vip Royal Class Borneo Trans"
+               style="width:100%;max-width:1080px;height:auto;display:block" />
+        </center>
+      </div>
+
+      <!-- Facility Tabs -->
+      <div class="facility-tabs">
+        <button class="facility-tab active" onclick="switchFacility('sleeper')">👑 Solitaire (Kabin Sleeper)</button>
+        <button class="facility-tab" onclick="switchFacility('royal')">💺 Vip Royal (Kursi Eksekutif)</button>
+        <button class="facility-tab" onclick="switchFacility('general')">⚡ Fasilitas Lainnya</button>
+      </div>
+
+      <!-- Solitaire Business Class -->
+      <div class="facility-content active" id="facility-sleeper">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+          <div class="facility-card">
+            <div class="facility-card-header">
+              <div class="facility-class-badge">
+                👑 &nbsp; SOLITAIRE BUSINESS CLASS
+              </div>
+              <h3>Solitaire Business Class</h3>
+              <p>Kabin pribadi yang bisa rebah rata — cocok untuk istirahat selama perjalanan malam.</p>
+              <div class="facility-card-price">
+                <div class="price-from">Harga Tiket</div>
+                <div class="price-amount">Rp 350.000</div>
+              </div>
+            </div>
+            <div class="facility-features">
+              <div class="feature-item">
+                <div class="feature-icon gold">🛏️</div><span class="feature-text">Kursi bisa rebah rata (flat bed)</span>
+              </div>
+              <div class="feature-item">
+                <div class="feature-icon gold">🖥️</div><span class="feature-text">Layar hiburan pribadi</span>
+              </div>
+              <div class="feature-item">
+                <div class="feature-icon gold">🧣</div><span class="feature-text">Selimut & bantal empuk</span>
+              </div>
+              <div class="feature-item">
+                <div class="feature-icon gold">🛑</div><span class="feature-text">Tirai penutup untuk privasi</span>
+              </div>
+              <div class="feature-item">
+                <div class="feature-icon gold">🪵</div><span class="feature-text">Interior kulit & kayu</span>
+              </div>
+              <div class="feature-item">
+                <div class="feature-icon gold">🔒</div><span class="feature-text">Kabin tenang & tertutup</span>
+              </div>
+            </div>
+            <div style="padding:0 28px 24px">
+              <span class="badge badge-gold">Hanya 2 kursi (A1 & A2)</span>
+              <span class="badge badge-secondary" style="margin-left:8px">Satu kabin per orang</span>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <div class="card" style="padding:24px;background:var(--magenta-50);border:1px solid var(--magenta-200)">
+              <h4 style="color:var(--magenta-700);margin-bottom:12px;font-size:1.05rem">💡 Di mana kursinya?</h4>
+              <p style="color:var(--silver-700);font-size:0.9rem;line-height:1.7">
+                Kursi Solitaire ada di <strong>baris paling depan (A1 & A2)</strong>, tepat di belakang pintu dan pengemudi.
+                Ruangnya luas, ada layar hiburan dan tirai penutup.
+              </p>
+            </div>
+            <div class="card" style="padding:24px">
+              <h4 style="margin-bottom:12px;font-size:1rem">🌟 Kelebihannya</h4>
+              <ul style="display:flex;flex-direction:column;gap:10px">
+                <li style="display:flex;gap:8px;font-size:0.9rem"><span style="color:var(--magenta-600);font-weight:700">✓</span> Bisa rebah rata untuk tidur nyenyak</li>
+                <li style="display:flex;gap:8px;font-size:0.9rem"><span style="color:var(--magenta-600);font-weight:700">✓</span> Layar TV pribadi di dalam kabin</li>
+                <li style="display:flex;gap:8px;font-size:0.9rem"><span style="color:var(--magenta-600);font-weight:700">✓</span> Selimut & bantal disediakan</li>
+                <li style="display:flex;gap:8px;font-size:0.9rem"><span style="color:var(--magenta-600);font-weight:700">✓</span> Pas untuk perjalanan malam</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vip Royal Class -->
+      <div class="facility-content" id="facility-royal">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+          <div class="facility-card">
+            <div class="facility-card-header">
+              <div class="facility-class-badge">
+                👑 &nbsp; VIP ROYAL CLASS
+              </div>
+              <h3>Vip Royal Class</h3>
+              <p>Kursi eksekutif berbahan kulit dengan sandaran kaki, tersedia kursi tunggal dan pasangan.</p>
+              <div class="facility-card-price">
+                <div class="price-from">Harga Tiket</div>
+                <div class="price-amount">Rp 200.000</div>
+              </div>
+            </div>
+            <div class="facility-features">
+              <div class="feature-item">
+                <div class="feature-icon magenta">💺</div><span class="feature-text">Kursi kulit bisa direbahkan</span>
+              </div>
+              <div class="feature-item">
+                <div class="feature-icon magenta">🦵</div><span class="feature-text">Sandaran kaki (leg rest)</span>
+              </div>
+              <div class="feature-item">
+                <div class="feature-icon magenta">🖥️</div><span class="feature-text">Layar hiburan di tiap kursi</span>
+              </div>
+              <div class="feature-item">
+                <div class="feature-icon magenta">🧣</div><span class="feature-text">Bantal & selimut</span>
+              </div>
+              <div class="feature-item">
+                <div class="feature-icon magenta">👫</div><span class="feature-text">Pilih kursi sendiri atau berdua</span>
+              </div>
+              <div class="feature-item">
+                <div class="feature-icon magenta">🛋️</div><span class="feature-text">Jok kulit tebal & empuk</span>
+              </div>
+            </div>
+            <div style="padding:0 28px 24px">
+              <span class="badge badge-magenta">15 kursi (B1 s/d F3)</span>
+              <span class="badge badge-secondary" style="margin-left:8px">Kursi tunggal & pasangan</span>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <div class="card" style="padding:24px;background:var(--silver-50);border:1px solid var(--silver-200)">
+              <h4 style="color:var(--silver-800);margin-bottom:12px;font-size:1.05rem">💡 Susunan kursinya seperti apa?</h4>
+              <p style="color:var(--silver-600);font-size:0.9rem;line-height:1.7">
+                Vip Royal menempati <strong>baris B sampai F</strong>. Sisi kiri kursi tunggal (B1, C1, D1, E1, F1) —
+                lega untuk Anda yang datang sendirian. Sisi kanan kursi berdua (B2-B3, C2-C3, dst.) — pas untuk pasangan atau keluarga.
+              </p>
+            </div>
+            <div class="card" style="padding:24px">
+              <h4 style="margin-bottom:12px;font-size:1rem">🌟 Kelebihannya</h4>
+              <ul style="display:flex;flex-direction:column;gap:10px">
+                <li style="display:flex;gap:8px;font-size:0.9rem"><span style="color:var(--magenta-600);font-weight:700">✓</span> Kursi kulit empuk, sandaran bisa direbahkan</li>
+                <li style="display:flex;gap:8px;font-size:0.9rem"><span style="color:var(--magenta-600);font-weight:700">✓</span> Sandaran kaki supaya tidak cepat lelah</li>
+                <li style="display:flex;gap:8px;font-size:0.9rem"><span style="color:var(--magenta-600);font-weight:700">✓</span> Layar hiburan di depan tiap kursi</li>
+                <li style="display:flex;gap:8px;font-size:0.9rem"><span style="color:var(--magenta-600);font-weight:700">✓</span> Bisa pilih kursi tunggal atau berdua</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- General Facilities -->
+      <div class="facility-content" id="facility-general">
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+          <div class="card" style="overflow:hidden">
+            <div style="background:var(--silver-900);padding:28px;text-align:center;color:white">
+              <div style="font-size:3rem;margin-bottom:8px">🚽</div>
+              <h3 style="color:white;font-size:1.2rem;font-weight:700">Toilet Bersih di Dalam Bus</h3>
+            </div>
+            <div style="padding:20px 24px">
+              <p style="font-size:0.9rem;color:var(--silver-600);line-height:1.7">
+                Toilet ada di <strong>bagian belakang kanan bus</strong>, jadi Anda tidak perlu berhenti di jalan hanya untuk ke toilet.
+              </p>
+            </div>
+          </div>
+          <div class="card" style="overflow:hidden">
+            <div style="background:var(--silver-700);padding:28px;text-align:center;color:white">
+              <div style="font-size:3rem;margin-bottom:8px">🧳</div>
+              <h3 style="color:white;font-size:1.2rem;font-weight:700">Bagasi Luas & Gratis</h3>
+            </div>
+            <div style="padding:20px 24px">
+              <p style="font-size:0.9rem;color:var(--silver-600);line-height:1.7">
+                Koper Anda disimpan aman di bagasi bawah bus. Gratis, maksimal <strong>20 kg per penumpang</strong>.
+              </p>
+            </div>
+          </div>
+          <div class="card" style="overflow:hidden">
+            <div style="background:var(--magenta-600);padding:28px;text-align:center;color:white">
+              <div style="font-size:3rem;margin-bottom:8px">⚡</div>
+              <h3 style="color:white;font-size:1.2rem;font-weight:700">Bus Listrik, Tanpa Bunyi Mesin</h3>
+            </div>
+            <div style="padding:20px 24px">
+              <p style="font-size:0.9rem;color:var(--silver-600);line-height:1.7">
+                Tanpa asap dan tanpa suara mesin bising, sehingga perjalanan lebih tenang dan sejuk sepanjang jalan.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== BOOKING CTA (halaman pemesanan terpisah) ======== -->
+  <section class="section booking-section" id="pemesanan">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Pemesanan Tiket</div>
+        <h2 class="section-title">Cara Pesan Tiket</h2>
+        <p class="section-subtitle">Ikuti 5 langkah sederhana ini. Tidak perlu aplikasi tambahan.</p>
+      </div>
+      <div class="cta-steps">
+        <div class="cta-step"><div class="cta-step-num">1</div><div class="cta-step-title">Cari Jadwal</div><div class="cta-step-desc">Pilih rute, tanggal, dan jumlah tiket</div></div>
+        <div class="cta-step"><div class="cta-step-num">2</div><div class="cta-step-title">Isi Data</div><div class="cta-step-desc">Masukkan nama, nomor HP, dan pilih kelas kursi</div></div>
+        <div class="cta-step"><div class="cta-step-num">3</div><div class="cta-step-title">Bayar</div><div class="cta-step-desc">Bayar lewat Virtual Account bank (BCA, Mandiri, BRI, BNI, Permata)</div></div>
+        <div class="cta-step"><div class="cta-step-num">4</div><div class="cta-step-title">Pilih Kursi</div><div class="cta-step-desc">Tentukan nomor kursi di denah bus</div></div>
+        <div class="cta-step"><div class="cta-step-num">5</div><div class="cta-step-title">Terima Tiket</div><div class="cta-step-desc">Simpan e-tiket, tunjukkan saat naik bus</div></div>
+      </div>
+      <div style="text-align:center;margin-top:36px">
+        <a href="pesan.html" class="btn btn-primary btn-lg">🎫 Mulai Pesan Tiket</a>
+        <p style="margin-top:12px;font-size:0.9rem;color:var(--silver-500)">Sudah punya kode booking? <a href="#cek-tiket" style="color:var(--magenta-600);font-weight:600">Cek di sini</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== GALLERY SECTION ======== -->
+  <section class="section" style="background:#F8FAFC" id="galeri">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Galeri</div>
+        <h2 class="section-title">Foto Bus & Interior</h2>
+        <p class="section-subtitle">Tampilan asli armada dan kursi di dalam bus.</p>
+      </div>
+
+      <div class="gallery-filters" id="galleryFilters">
+        <button class="facility-tab active" data-filter="all" onclick="filterGallery('all')">🖼️ Semua</button>
+        <button class="facility-tab" data-filter="armada" onclick="filterGallery('armada')">🚌 Bus</button>
+        <button class="facility-tab" data-filter="interior" onclick="filterGallery('interior')">💺 Kursi & Interior</button>
+      </div>
+
+      <div class="gallery-masonry" id="galleryGrid"></div>
+    </div>
+  </section>
+
+  <!-- Lightbox Galeri -->
+  <div class="lightbox" id="lightbox" onclick="if(event.target===this)closeLightbox()">
+    <button class="lightbox-close" aria-label="Tutup" onclick="closeLightbox()">✕</button>
+    <button class="lightbox-nav lightbox-prev" aria-label="Foto sebelumnya" onclick="stepLightbox(-1)">‹</button>
+    <figure class="lightbox-figure">
+      <img id="lightboxImg" src="" alt="" />
+      <figcaption id="lightboxCaption"></figcaption>
+    </figure>
+    <button class="lightbox-nav lightbox-next" aria-label="Foto berikutnya" onclick="stepLightbox(1)">›</button>
+  </div>
+
+  <!-- ======== TESTIMONIALS ======== -->
+  <section class="section" id="ulasan">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Ulasan Penumpang</div>
+        <h2 class="section-title">Kata Penumpang Kami</h2>
+        <p class="section-subtitle">Pengalaman nyata penumpang rute Pontianak ↔ Sintang.</p>
+      </div>
+      <div class="testimonials-grid" id="testimonialsGrid"></div>
+    </div>
+  </section>
+
+  <!-- ======== CEK STATUS TIKET ======== -->
+  <section id="cek-tiket">
+    <div class="check-status-hero">
+      <div class="container">
+        <h2 style="font-size:1.8rem;font-weight:800;margin-bottom:8px">🔍 Cek Status Tiket Anda</h2>
+        <p style="color:rgba(255,255,255,0.75)">Masukkan kode booking dan nomor HP yang Anda pakai saat memesan.</p>
+      </div>
+    </div>
+    <div class="container">
+      <div class="check-status-card">
+        <form id="checkStatusForm" onsubmit="checkTicketStatus(event)">
+          <div class="form-group" style="margin-bottom:16px">
+            <label class="form-label">Kode Booking</label>
+            <input type="text" class="form-input" id="checkCode" required placeholder="Contoh: BTM-2026100101"
+              autocomplete="off" />
+          </div>
+          <div class="form-group" style="margin-bottom:20px">
+            <label class="form-label">Nomor HP Saat Memesan</label>
+            <input type="tel" class="form-input" id="checkPhone" required placeholder="08xxxxxxxxxx" />
+          </div>
+          <button type="submit" class="btn btn-primary w-full btn-lg">🔍 Lihat Tiket Saya</button>
+        </form>
+      </div>
+      <div id="ticketStatusResult" class="hidden" style="max-width:600px;margin:0 auto 40px"></div>
+    </div>
+  </section>
+
+  <!-- ======== FAQ SECTION ======== -->
+  <section class="section" style="background:white" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Tanya Jawab</div>
+        <h2 class="section-title">Pertanyaan yang Sering Ditanyakan</h2>
+        <p class="section-subtitle">Jawaban singkat seputar tiket, pembayaran, dan fasilitas bus.</p>
+      </div>
+      <div class="faq-list" id="faqList"></div>
+    </div>
+  </section>
+
+  <!-- ======== FOOTER ======== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="navbar-logo" style="margin-bottom:16px">
+            <div class="logo-icon" style="font-size:1.2rem">⚡</div>
+            <div class="logo-text">
+              <span class="po-label">PT. BORNEO TRANS MANDIRI</span>
+              <span class="po-name">PO. BORNEO TRANS</span>
+            </div>
+          </div>
+          <p style="line-height:1.7;color:var(--silver-400)">
+            Bus listrik antar kota <strong>Pontianak ↔ Sintang</strong>. Tanpa asap, tanpa bising, dengan pilihan kabin sleeper dan kursi eksekutif.
+          </p>
+          <div class="social-links" style="margin-top:16px">
+            <a href="https://instagram.com/borneo_trans_kalbar" target="_blank" rel="noopener" class="social-btn" title="Instagram @borneo_trans_kalbar">📷</a>
+            <a href="https://instagram.com/borneotrans.stg" target="_blank" rel="noopener" class="social-btn" title="Instagram @borneotrans.stg">📷</a>
+            <a href="https://tiktok.com/@borneo_trans_kalbar" target="_blank" rel="noopener" class="social-btn" title="TikTok">🎵</a>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h4>Menu</h4>
+          <div class="footer-links">
+            <a href="pesan.html" class="footer-link">Pesan Tiket</a>
+            <a href="#menjangkau-kami" class="footer-link">Hubungi Kami</a>
+            <a href="#fasilitas" class="footer-link">Fasilitas Bus</a>
+            <a href="#cek-tiket" class="footer-link">Cek Tiket</a>
+            <a href="#galeri" class="footer-link">Galeri Foto</a>
+            <a href="#faq" class="footer-link">Tanya Jawab</a>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h4>Rute & Kelas</h4>
+          <div class="footer-links">
+            <a href="pesan.html" class="footer-link">Pontianak → Sintang (±10 jam)</a>
+            <a href="pesan.html" class="footer-link">Sintang → Pontianak (±10 jam)</a>
+            <a href="#fasilitas" class="footer-link">👑 Solitaire (kabin sleeper)</a>
+            <a href="#fasilitas" class="footer-link">💺 Vip Royal (kursi eksekutif)</a>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h4>Alamat & Kontak</h4>
+          <div>
+            <div class="footer-contact-item">
+              <span class="footer-contact-icon">📍</span>
+              <span><strong>Pontianak:</strong> Jl. Sungai Raya Ruko 1-5 Depan RS Sudarso Samping Terminal Sudarso, Kubu Raya</span>
+            </div>
+            <div class="footer-contact-item">
+              <span class="footer-contact-icon">📍</span>
+              <span><strong>Sintang:</strong> Jl. PKP Mujahidin (Sebelum Tugu BI Samping Kopi Aceh)</span>
+            </div>
+            <div class="footer-contact-item">
+              <span class="footer-contact-icon">💬</span>
+              <span><strong>WA Pontianak:</strong> 0823-9539-2233</span>
+            </div>
+            <div class="footer-contact-item">
+              <span class="footer-contact-icon">💬</span>
+              <span><strong>WA Sintang:</strong> 0823-9539-2229</span>
+            </div>
+            <div class="footer-contact-item">
+              <span class="footer-contact-icon">✉️</span>
+              <span>info@borneotrans.co.id</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 PT. Borneo Trans Mandiri (PO. BORNEO TRANS). Seluruh hak dilindungi undang-undang.</p>
+        <p style="font-size:0.8rem">
+          <a href="#" class="footer-link" onclick="openLegal('terms');return false">Syarat & Ketentuan</a> · 
+          <a href="#" class="footer-link" onclick="openLegal('privacy');return false">Kebijakan Privasi</a>
+        </p>
+        <p style="font-size:0.75rem;color:rgba(255,255,255,0.55)">Aman • Nyaman • Tepat Waktu</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ======== MODALS ======== -->
+
+  <!-- Video Tutorial Modal -->
+  <div class="modal-overlay" id="videoModal">
+    <div class="modal modal-lg">
+      <div class="modal-header">
+        <div class="modal-title">🎬 Cara Pesan Tiket</div>
+        <button class="modal-close" onclick="closeVideoModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <div
+          style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:var(--radius-lg);margin-bottom:16px">
+          <iframe id="youtubeFrame" src="about:blank"
+            style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;border-radius:var(--radius-lg)"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+          <!-- Placeholder when no video -->
+          <div id="videoPlaceholder"
+            style="position:absolute;inset:0;background:var(--silver-900);border-radius:var(--radius-lg);display:flex;flex-direction:column;align-items:center;justify-content:center;color:white;gap:12px">
+            <div style="font-size:4rem">▶️</div>
+            <h3 style="font-size:1.2rem;font-weight:700">Video Cara Pesan Tiket</h3>
+            <p style="font-size:0.875rem;opacity:0.7;text-align:center;max-width:300px">Video panduan langkah demi langkah
+              cara memesan tiket bus listrik Borneo Trans.</p>
+            <a href="https://youtube.com" target="_blank" class="btn btn-gold" style="margin-top:8px">▶ Tonton di
+              YouTube</a>
+          </div>
+        </div>
+        <div style="background:var(--silver-50);border-radius:var(--radius-lg);padding:20px;border:1px solid var(--silver-200)">
+          <h4 style="font-weight:700;margin-bottom:12px">📋 Langkah Pemesanan Tiket:</h4>
+          <ol style="display:flex;flex-direction:column;gap:8px">
+            <li style="font-size:0.9rem;display:flex;gap:10px"><span
+                style="background:var(--magenta-500);color:white;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700;flex-shrink:0">1</span>
+              Pilih rute, tanggal, dan jumlah tiket, lalu klik <strong>Cari Jadwal</strong></li>
+            <li style="font-size:0.9rem;display:flex;gap:10px"><span
+                style="background:var(--magenta-500);color:white;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700;flex-shrink:0">2</span>
+              Pilih jam keberangkatan yang Anda mau</li>
+            <li style="font-size:0.9rem;display:flex;gap:10px"><span
+                style="background:var(--magenta-500);color:white;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700;flex-shrink:0">3</span>
+              Isi nama &amp; nomor HP, lalu pilih kelas: <strong>Solitaire</strong> atau <strong>Vip Royal</strong></li>
+            <li style="font-size:0.9rem;display:flex;gap:10px"><span
+                style="background:var(--magenta-500);color:white;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700;flex-shrink:0">4</span>
+              <strong>Bayar dulu</strong> lewat Virtual Account (satu-satunya cara bayar di website ini)</li>
+            <li style="font-size:0.9rem;display:flex;gap:10px"><span
+                style="background:var(--magenta-500);color:white;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700;flex-shrink:0">5</span>
+              Setelah bayar masuk, <strong>pilih nomor kursi</strong> di denah bus</li>
+            <li style="font-size:0.9rem;display:flex;gap:10px"><span
+                style="background:var(--success);color:white;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700;flex-shrink:0">✓</span>
+              Simpan atau cetak e-tiket, lalu tunjukkan saat naik bus</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Refund Info Modal -->
+  <div class="modal-overlay" id="refundModal">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">💰 Batalkan / Refund Tiket</div>
+        <button class="modal-close" onclick="closeModal('refundModal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <div
+          style="background:#FEF2F2;border:1px solid #FCA5A5;border-radius:var(--radius-lg);padding:16px;margin-bottom:20px">
+          <p style="font-size:0.9rem;color:#991B1B;font-weight:600">⚠️ Pembatalan tiket hanya bisa dibantu lewat WhatsApp
+            Contact Center Borneo Trans, tidak bisa dari website.</p>
+        </div>
+        <h4 style="font-weight:700;margin-bottom:16px">📋 Biaya Pembatalan:</h4>
+        <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:20px">
+          <div
+            style="padding:14px 16px;background:var(--silver-50);border-radius:var(--radius-md);border-left:4px solid var(--success);font-size:0.9rem">
+            <strong>Lebih dari 24 jam sebelum berangkat</strong><br />
+            <span style="color:var(--silver-600)">Potongan admin 10% dari harga tiket</span>
+          </div>
+          <div
+            style="padding:14px 16px;background:var(--silver-50);border-radius:var(--radius-md);border-left:4px solid var(--warning);font-size:0.9rem">
+            <strong>2 sampai 24 jam sebelum berangkat</strong><br />
+            <span style="color:var(--silver-600)">Potongan admin 50% dari harga tiket</span>
+          </div>
+          <div
+            style="padding:14px 16px;background:var(--silver-50);border-radius:var(--radius-md);border-left:4px solid var(--danger);font-size:0.9rem">
+            <strong>Kurang dari 2 jam sebelum berangkat</strong><br />
+            <span style="color:var(--silver-600)">Tiket hangus — tidak bisa dikembalikan</span>
+          </div>
+        </div>
+        <h4 style="font-weight:700;margin-bottom:12px">📋 Yang perlu Anda siapkan:</h4>
+        <ul style="display:flex;flex-direction:column;gap:6px;margin-bottom:20px">
+          <li style="font-size:0.9rem;display:flex;gap:8px"><span>•</span> Kode booking tiket (contoh: BTM-xxxxxxxxxx)
+          </li>
+          <li style="font-size:0.9rem;display:flex;gap:8px"><span>•</span> Nomor HP yang dipakai saat memesan</li>
+          <li style="font-size:0.9rem;display:flex;gap:8px"><span>•</span> Alasan pembatalan (boleh dikosongkan)</li>
+          <li style="font-size:0.9rem;display:flex;gap:8px"><span>•</span> Nomor rekening untuk pengembalian uang</li>
+        </ul>
+        <div id="refundBookingInfo" style="margin-bottom:20px"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline-silver" onclick="closeModal('refundModal')">Tutup</button>
+        <a id="refundWABtn" href="#" target="_blank" class="btn btn-success">💬 Hubungi via WhatsApp</a>
+      </div>
+    </div>
+  </div>
+
+  <a href="#" id="waFloat" class="wa-float" target="_blank" rel="noopener" aria-label="Chat WhatsApp">💬</a>
+
+  <div class="modal-overlay" id="legalModal">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title" id="legalTitle"></div><button class="modal-close" aria-label="Tutup"
+          onclick="closeModal('legalModal')">✕</button>
+      </div>
+      <div class="modal-body" id="legalBody"></div>
+    </div>
+  </div>
+
+  <!-- Print Area (hidden, shown on print) -->
+  <div id="print-area" style="display:none"></div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>

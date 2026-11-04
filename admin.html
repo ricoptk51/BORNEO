@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portal Admin — PO. Borneo Trans Mandiri</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Admin-specific overrides */
+    body { background: var(--silver-100); }
+    .admin-sidebar-collapsed .admin-sidebar { width: 64px; }
+    .admin-sidebar-collapsed .admin-main { margin-left: 64px; }
+    .admin-sidebar-collapsed .admin-nav-item span,
+    .admin-sidebar-collapsed .admin-nav-label,
+    .admin-sidebar-collapsed .logo-text { display: none; }
+    .admin-sidebar-collapsed .admin-nav-item { justify-content: center; }
+    .filter-bar { display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap;padding:16px 20px;background:var(--silver-50);border-bottom:1px solid var(--silver-200); }
+    .page-section { display:none; }
+    .page-section.active { display:block; }
+
+    /* Drag & Drop Seat Map */
+    .seat.draggable { cursor: grab; }
+    .seat.drag-over { border-style: dashed !important; transform: scale(1.1); }
+    .seat.dragging { opacity: 0.4; cursor: grabbing; }
+
+    /* Chart bars */
+    .bar-chart-wrap { display:flex;flex-direction:column;gap:8px; }
+    .bar-row { display:flex;align-items:center;gap:10px;font-size:0.8rem; }
+    .bar-label { width:120px;color:var(--silver-600);flex-shrink:0; }
+    .bar-track { flex:1;background:var(--silver-200);border-radius:var(--radius-full);height:12px;overflow:hidden; }
+    .bar-fill { height:100%;border-radius:var(--radius-full);background:var(--magenta-500);transition:width 1s ease; }
+    .bar-val { width:80px;text-align:right;font-weight:700;color:var(--silver-700); }
+  </style>
+</head>
+<body>
+
+<!-- Toast -->
+<div class="toast-container" id="adminToastContainer"></div>
+
+<!-- LOGIN PAGE -->
+<div id="loginPage" class="login-page">
+  <div class="login-card">
+    <div style="text-align:center;margin-bottom:28px">
+      <div style="font-size:3rem;margin-bottom:10px">🔐</div>
+      <div class="login-title">Portal Admin & Agen</div>
+      <div class="login-subtitle">PO. Borneo Trans Mandiri — Back-Office</div>
+    </div>
+    <form onsubmit="handleLogin(event)">
+      <div class="form-group" style="margin-bottom:16px">
+        <label class="form-label">Username</label>
+        <input type="text" class="form-input" id="loginUser" placeholder="Masukkan username" autocomplete="username" />
+      </div>
+      <div class="form-group" style="margin-bottom:20px">
+        <label class="form-label">Password</label>
+        <div style="position:relative">
+          <input type="password" class="form-input" id="loginPass" placeholder="Masukkan password" autocomplete="current-password" />
+          <button type="button" onclick="togglePassVis()" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--silver-400);font-size:1rem">👁</button>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-gold w-full btn-lg">🔓 Masuk</button>
+    </form>
+    <div class="credentials-hint">
+      <strong>Demo Credentials:</strong><br/>
+      Admin: <strong>superadmin</strong> / <strong>admin123</strong>
+    </div>
+    <div style="text-align:center;margin-top:20px">
+      <a href="index.html" style="color:var(--silver-500);font-size:0.8rem">← Kembali ke Website Utama</a>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN LAYOUT -->
+<div id="adminLayout" class="admin-layout hidden">
+
+  <!-- Sidebar -->
+  <aside class="admin-sidebar" id="adminSidebar">
+    <div class="admin-sidebar-header">
+      <div class="navbar-logo">
+        <div class="logo-icon" style="width:36px;height:36px;font-size:1rem">🚌</div>
+        <div class="logo-text">
+          <span class="po-label" style="font-size:0.6rem">PO. BTM</span>
+          <span class="po-name" style="font-size:0.85rem">Back-Office</span>
+        </div>
+      </div>
+      <div id="adminRoleBadge" style="margin-top:10px;font-size:0.72rem;padding:4px 10px;border-radius:var(--radius-full);background:var(--magenta-50);color:var(--magenta-700);display:inline-block"></div>
+    </div>
+
+    <nav class="admin-nav">
+      <div class="admin-nav-section">
+        <div class="admin-nav-label">Utama</div>
+        <a href="#" class="admin-nav-item active" onclick="showSection('overview')">
+          <span class="nav-icon">📊</span><span>Ringkasan & Statistik</span>
+        </a>
+        <a href="#" class="admin-nav-item" onclick="showSection('manifest')">
+          <span class="nav-icon">📋</span><span>Daftar Penumpang</span>
+        </a>
+        <a href="#" class="admin-nav-item" onclick="showSection('bookingOffline')">
+          <span class="nav-icon">🎫</span><span>Pesan di Loket</span>
+        </a>
+      </div>
+      <div class="admin-nav-section">
+        <div class="admin-nav-label">Manajemen</div>
+        <a href="#" class="admin-nav-item" onclick="showSection('schedule')">
+          <span class="nav-icon">📅</span><span>Jadwal & Bus</span>
+        </a>
+        <a href="#" class="admin-nav-item" onclick="showSection('seatEditor')">
+          <span class="nav-icon">🗺️</span><span>Atur Denah Kursi</span>
+        </a>
+        <a href="#" class="admin-nav-item" onclick="showSection('refund')">
+          <span class="nav-icon">💰</span><span>Pengembalian Uang</span>
+        </a>
+        <a href="#" class="admin-nav-item" onclick="showSection('suratJalan')">
+          <span class="nav-icon">📄</span><span>Surat Jalan</span>
+        </a>
+      </div>
+      <div class="admin-nav-section">
+        <div class="admin-nav-label">Laporan</div>
+        <a href="#" class="admin-nav-item" onclick="showSection('keuangan')">
+          <span class="nav-icon">💵</span><span>Laporan Uang</span>
+        </a>
+        <a href="#" class="admin-nav-item" onclick="showSection('auditLog')">
+          <span class="nav-icon">🔍</span><span>Riwayat Aktivitas</span>
+        </a>
+      </div>
+      <div class="admin-nav-section">
+        <div class="admin-nav-label">Akun</div>
+        <a href="index.html" class="admin-nav-item">
+          <span class="nav-icon">🌐</span><span>Website Utama</span>
+        </a>
+        <a href="#" class="admin-nav-item" onclick="handleLogout()">
+          <span class="nav-icon">🚪</span><span>Keluar</span>
+        </a>
+      </div>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="admin-main" id="adminMain">
+    <!-- Topbar -->
+    <div class="admin-topbar">
+      <div style="display:flex;align-items:center;gap:12px">
+        <button onclick="toggleSidebar()" style="background:none;border:none;font-size:1.2rem;color:var(--silver-500);cursor:pointer">☰</button>
+        <div class="admin-page-title" id="adminPageTitle">📊 Ringkasan & Statistik</div>
+      </div>
+      <div class="admin-user-menu">
+        <div style="text-align:right">
+          <div style="font-size:0.875rem;font-weight:600" id="adminUserName">—</div>
+          <div style="font-size:0.75rem;color:var(--silver-500)" id="adminUserBranch">—</div>
+        </div>
+        <div class="admin-avatar" id="adminUserAvatar">?</div>
+      </div>
+    </div>
+
+    <div class="admin-content">
+
+      <!-- ===== OVERVIEW ===== -->
+      <div class="page-section active" id="section-overview">
+        <div class="stats-grid" id="statsGrid"></div>
+
+        <div style="display:grid;grid-template-columns:2fr 1fr;gap:20px;margin-bottom:20px">
+          <!-- Revenue Chart -->
+          <div class="card">
+            <div class="card-header" style="display:flex;justify-content:space-between;align-items:center">
+              <h3 style="font-size:1rem;font-weight:700">📈 Penjualan 7 Hari Terakhir</h3>
+              <span class="badge badge-success">Langsung</span>
+            </div>
+            <div class="card-body">
+              <div class="chart-bar-container" id="revenueChart"></div>
+              <div style="display:flex;justify-content:space-around;margin-top:6px" id="chartLabels"></div>
+            </div>
+          </div>
+          <!-- Payment Method Donut -->
+          <div class="card">
+            <div class="card-header">
+              <h3 style="font-size:1rem;font-weight:700">💳 Pembayaran per Metode</h3>
+            </div>
+            <div class="card-body">
+              <div style="display:flex;align-items:center;gap:20px" id="paymentDonut"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Branch Performance -->
+        <div class="card">
+          <div class="card-header">
+            <h3 style="font-size:1rem;font-weight:700">🏢 Performa Penjualan per Cabang</h3>
+          </div>
+          <div class="card-body">
+            <div class="bar-chart-wrap" id="branchChart"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== MANIFEST ===== -->
+      <div class="page-section" id="section-manifest">
+        <div class="filter-bar">
+          <div class="form-group">
+            <label class="form-label">Tanggal</label>
+            <input type="date" class="form-input" id="manifestDate" onchange="renderManifest()" style="width:160px" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Rute</label>
+            <select class="form-select" id="manifestRoute" onchange="renderManifest()" style="width:220px">
+              <option value="">Semua Rute</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Unit Bus</label>
+            <select class="form-select" id="manifestUnit" onchange="renderManifest()" style="width:140px">
+              <option value="">Semua Unit</option>
+              <option value="1">Unit 1</option>
+              <option value="2">Unit 2</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Channel</label>
+            <select class="form-select" id="manifestAgent" onchange="renderManifest()" style="width:180px">
+              <option value="">Semua Channel</option>
+              <option value="Online">Online</option>
+              <option value="Loket">Loket (Offline)</option>
+            </select>
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="renderManifest()">🔍 Filter</button>
+          <button class="btn btn-success btn-sm" onclick="exportManifestCSV()">📥 Unduh Excel/CSV</button>
+          <button class="btn btn-outline-silver btn-sm" onclick="printManifest()">🖨️ Cetak Manifest</button>
+        </div>
+        <div class="table-container">
+          <div class="table-header">
+            <h3 style="font-size:1rem;font-weight:700">📋 Daftar Penumpang</h3>
+            <div id="manifestSummary" style="font-size:0.875rem;color:var(--silver-500)"></div>
+          </div>
+          <div class="table-inner">
+            <table class="data-table" id="manifestTable">
+              <thead>
+                <tr>
+                  <th>No</th><th>No. Tiket</th><th>Nama Penumpang</th>
+                  <th>No. Telepon</th><th>Titik Naik → Turun</th>
+                  <th>Kelas</th><th>Kursi</th><th>Unit</th>
+                  <th>Status Bayar</th><th>Channel</th><th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="manifestBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== BOOKING OFFLINE ===== -->
+      <div class="page-section" id="section-bookingOffline">
+        <div style="display:grid;grid-template-columns:1fr 400px;gap:24px">
+          <div>
+            <div class="card" style="margin-bottom:20px">
+              <div class="card-header">
+                <h3 style="font-size:1rem;font-weight:700">🎫 Form Pesan di Loket</h3>
+              </div>
+              <div class="card-body">
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+                  <div class="form-group">
+                    <label class="form-label">Rute *</label>
+                    <select class="form-select" id="offRouteId" onchange="updateOfflineForm()">
+                      <option value="">— Pilih Rute —</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Jadwal *</label>
+                    <select class="form-select" id="offScheduleId">
+                      <option value="">— Pilih Rute Dulu —</option>
+                    </select>
+                  </div>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+                  <div class="form-group">
+                    <label class="form-label">Tanggal *</label>
+                    <input type="date" class="form-input" id="offDate" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Unit Bus</label>
+                    <select class="form-select" id="offUnit">
+                      <option value="1">Unit 1</option>
+                      <option value="2">Unit 2</option>
+                    </select>
+                  </div>
+                </div>
+                <button class="btn btn-primary" onclick="loadOfflineSeatMap()">🗺️ Tampilkan Denah Kursi</button>
+              </div>
+            </div>
+
+            <!-- Seat Map -->
+            <div id="offlineSeatMapContainer" class="hidden">
+              <div class="seat-map-wrapper" id="offlineBusMap"></div>
+            </div>
+          </div>
+
+          <!-- Passenger Form -->
+          <div>
+            <div class="card">
+              <div class="card-header">
+                <h4 style="font-size:1rem;font-weight:700">👤 Data Penumpang</h4>
+              </div>
+              <div class="card-body" style="display:flex;flex-direction:column;gap:14px">
+                <div id="offSelectedSeat" style="padding:10px 14px;background:var(--silver-50);border-radius:var(--radius-md);font-size:0.875rem;color:var(--silver-500)">
+                  Belum ada kursi dipilih
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Nama Lengkap *</label>
+                  <input type="text" class="form-input" id="offPassengerName" placeholder="Nama sesuai KTP" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">No. Telepon *</label>
+                  <input type="tel" class="form-input" id="offPassengerPhone" placeholder="08xxxxxxxxxx" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Titik Naik *</label>
+                  <input type="text" class="form-input" id="offBoarding" list="offBoardingList" placeholder="Ketik/Pilih titik naik..." />
+                  <datalist id="offBoardingList"></datalist>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Titik Turun *</label>
+                  <input type="text" class="form-input" id="offDropoff" list="offDropoffList" placeholder="Ketik/Pilih titik turun..." />
+                  <datalist id="offDropoffList"></datalist>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Metode Bayar</label>
+                  <select class="form-select" id="offPayMethod" onchange="onOfflinePayMethodChange()">
+                    <option value="cash">💵 Tunai (Cash) di Kantor</option>
+                    <option value="virtual_account">🏦 Virtual Account</option>
+                  </select>
+                </div>
+                <div class="form-group" id="offVABankGroup" style="display:none">
+                  <label class="form-label">Bank Virtual Account</label>
+                  <select class="form-select" id="offVABank">
+                    <option value="BCA">BCA</option><option value="Mandiri">Mandiri</option>
+                    <option value="BRI">BRI</option><option value="BNI">BNI</option><option value="Permata">Permata</option>
+                  </select>
+                </div>
+                <div class="form-group" id="offCashGroup">
+                  <label class="form-label">Uang Diterima (Rp)</label>
+                  <input type="number" class="form-input" id="offCashReceived" min="0" step="1000" placeholder="Contoh: 250000" oninput="updateOfflineChange()" />
+                  <div id="offCashChange" style="font-size:0.85rem;margin-top:6px;color:var(--silver-600)">Kembalian akan muncul setelah kursi dipilih</div>
+                </div>
+                <label style="display:flex;gap:10px;align-items:flex-start;padding:12px;background:#FFFBEB;border:1px solid #FCD34D;border-radius:var(--radius-md);font-size:0.82rem;color:#92400E">
+                  <input type="checkbox" id="offVAPaid" style="margin-top:3px" />
+                  <span id="offPaidLabel"><strong>Uang tunai sudah diterima (lunas).</strong> Bayar dulu, baru pilih kursi — centang ini sebelum memilih kursi di denah.</span>
+                </label>
+                <div id="offPriceDisplay" style="font-size:0.875rem;color:var(--silver-600);padding:10px;background:var(--silver-50);border-radius:var(--radius-md)">
+                  Harga akan muncul setelah kursi dipilih
+                </div>
+                <button class="btn btn-primary w-full" onclick="submitOfflineBooking()">✅ Buat Tiket & Cetak</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== SCHEDULE MANAGEMENT ===== -->
+      <div class="page-section" id="section-schedule">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px">
+          <!-- Crew Input -->
+          <div class="card">
+            <div class="card-header">
+              <h3 style="font-size:1rem;font-weight:700">👨‍✈️ Input Data Kru Bus</h3>
+            </div>
+            <div class="card-body" style="display:flex;flex-direction:column;gap:14px">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+                <div class="form-group">
+                  <label class="form-label">Rute</label>
+                  <select class="form-select" id="crewRoute"></select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Tanggal</label>
+                  <input type="date" class="form-input" id="crewDate" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Unit Bus</label>
+                  <select class="form-select" id="crewUnit">
+                    <option value="1">Unit 1</option>
+                    <option value="2">Unit 2</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Sopir</label>
+                <input type="text" class="form-input" id="crewDriver" placeholder="Nama sopir" value="Slamet Riyadi" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Pramugari</label>
+                <input type="text" class="form-input" id="crewPramugari" placeholder="Nama pramugari" value="Nadia Putri" />
+              </div>
+              <button class="btn btn-primary" onclick="saveCrew()">💾 Simpan Data Kru</button>
+            </div>
+          </div>
+
+          <!-- Unit 2 Override -->
+          <div class="card">
+            <div class="card-header">
+              <h3 style="font-size:1rem;font-weight:700">🔧 Buka / Kunci Unit 2</h3>
+            </div>
+            <div class="card-body">
+              <div style="margin-bottom:16px;padding:14px;background:#FEF3C7;border-radius:var(--radius-md);font-size:0.875rem;color:#B45309">
+                ⚠️ Fitur ini memungkinkan Admin membuka atau mengunci Unit 2 secara manual tanpa menunggu Unit 1 penuh.
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px">
+                <div class="form-group">
+                  <label class="form-label">Rute</label>
+                  <select class="form-select" id="overrideRoute"></select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Jadwal</label>
+                  <select class="form-select" id="overrideSchedule"></select>
+                </div>
+                <div class="form-group" style="grid-column:span 2">
+                  <label class="form-label">Tanggal</label>
+                  <input type="date" class="form-input" id="overrideDate" />
+                </div>
+              </div>
+              <div style="display:flex;gap:10px">
+                <button class="btn btn-success" onclick="forceUnit2(true)" style="flex:1">🔓 Buka Unit 2</button>
+                <button class="btn btn-danger" onclick="forceUnit2(false)" style="flex:1">🔒 Kunci Unit 2</button>
+              </div>
+              <div id="overrideStatus" style="margin-top:14px;font-size:0.875rem;color:var(--silver-500);text-align:center"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-bottom:20px">
+          <div class="card-header"><h3 style="font-size:1rem;font-weight:700">⚙️ Kelola Jadwal & Harga</h3></div>
+          <div class="card-body">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;align-items:end;margin-bottom:16px">
+              <div class="form-group"><label class="form-label">Rute</label><select class="form-select" id="cfgRoute" onchange="loadPriceForm()"></select></div>
+              <div class="form-group"><label class="form-label">Berangkat</label><input type="time" class="form-input" id="cfgDep" /></div>
+              <div class="form-group"><label class="form-label">Tiba</label><input type="time" class="form-input" id="cfgArr" /></div>
+              <button class="btn btn-primary" onclick="addSchedule()">➕ Tambah Jadwal</button>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;align-items:end">
+              <div class="form-group"><label class="form-label">Harga Solitaire Business Class (Rp)</label><input type="number" min="1" class="form-input" id="cfgSolitaire" /></div>
+              <div class="form-group"><label class="form-label">Harga Vip Royal Class (Rp)</label><input type="number" min="1" class="form-input" id="cfgRoyal" /></div>
+              <button class="btn btn-success" onclick="savePrices()">💾 Simpan Harga (rute terpilih)</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Active Schedules Table -->
+        <div class="table-container">
+          <div class="table-header">
+            <h3 style="font-size:1rem;font-weight:700">📅 Jadwal Aktif</h3>
+          </div>
+          <div class="table-inner">
+            <table class="data-table">
+              <thead>
+                <tr><th>Rute</th><th>Berangkat</th><th>Tiba</th><th>Jadwal ID</th><th>Aksi</th></tr>
+              </thead>
+              <tbody id="scheduleTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== SEAT MAP EDITOR ===== -->
+      <div class="page-section" id="section-seatEditor">
+        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;margin-bottom:20px;padding:20px;background:white;border-radius:var(--radius-xl);box-shadow:var(--shadow-md)">
+          <div class="form-group">
+            <label class="form-label">Rute</label>
+            <select class="form-select" id="editorRoute" onchange="loadEditorSeatMap()"></select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Jadwal</label>
+            <select class="form-select" id="editorSchedule" onchange="loadEditorSeatMap()"></select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Tanggal</label>
+            <input type="date" class="form-input" id="editorDate" onchange="loadEditorSeatMap()" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Unit</label>
+            <select class="form-select" id="editorUnit" onchange="loadEditorSeatMap()">
+              <option value="1">Unit 1</option>
+              <option value="2">Unit 2</option>
+            </select>
+          </div>
+          <button class="btn btn-primary" onclick="loadEditorSeatMap()">🗺️ Muat Denah</button>
+        </div>
+
+        <div style="display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:start">
+          <!-- Editor Seat Map -->
+          <div>
+            <div class="seat-map-wrapper" id="editorSeatMap"></div>
+          </div>
+          <!-- Passenger Reassign Panel -->
+          <div>
+            <div class="card" style="margin-bottom:16px">
+              <div class="card-header">
+                <h4 style="font-size:1rem;font-weight:700">🔄 Pindah / Tukar Kursi</h4>
+              </div>
+              <div class="card-body">
+                <div style="margin-bottom:14px;padding:12px;background:var(--silver-50);border-radius:var(--radius-md);font-size:0.8rem;color:var(--silver-600)">
+                  💡 Klik kursi yang sudah terisi untuk memilih penumpang, lalu klik kursi kosong untuk memindahkannya. Atau pilih 2 kursi terisi untuk ditukar posisi.
+                </div>
+                <div id="editorActionPanel">
+                  <p style="color:var(--silver-400);font-size:0.875rem;text-align:center;padding:20px 0">Klik kursi di peta untuk memulai</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Swap Instructions -->
+            <div class="card">
+              <div class="card-header">
+                <h4 style="font-size:1rem;font-weight:700">📊 Info Kursi</h4>
+              </div>
+              <div class="card-body">
+                <div id="editorSeatInfo" style="font-size:0.875rem;color:var(--silver-600)">
+                  Pilih kursi untuk melihat detail
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== REFUND MANAGEMENT ===== -->
+      <div class="page-section" id="section-refund">
+        <div class="card" style="margin-bottom:20px">
+          <div class="card-header">
+            <h3 style="font-size:1rem;font-weight:700">🔍 Cari Tiket untuk Pengembalian Uang</h3>
+          </div>
+          <div class="card-body">
+            <div style="display:flex;gap:12px;flex-wrap:wrap">
+              <input type="text" class="form-input" id="refundSearch" placeholder="Kode Booking (BTM-...) atau Nama Penumpang" style="max-width:380px" />
+              <button class="btn btn-primary" onclick="searchRefundTicket()">🔍 Cari</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="refundResult"></div>
+
+        <!-- All Refundable / Cancelled -->
+        <div class="table-container" style="margin-top:20px">
+          <div class="table-header">
+            <h3 style="font-size:1rem;font-weight:700">📋 Riwayat Pengembalian & Pembatalan</h3>
+          </div>
+          <div class="table-inner">
+            <table class="data-table">
+              <thead>
+                <tr><th>No. Tiket</th><th>Nama</th><th>Rute</th><th>Kursi</th><th>Harga</th><th>Status</th><th>Nominal Pengembalian</th></tr>
+              </thead>
+              <tbody id="refundHistoryBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== SURAT JALAN ===== -->
+      <div class="page-section" id="section-suratJalan">
+        <div class="card" style="margin-bottom:20px">
+          <div class="card-header">
+            <h3 style="font-size:1rem;font-weight:700">📄 Buat Surat Jalan & Cetak Denah Bus</h3>
+          </div>
+          <div class="card-body">
+            <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end">
+              <div class="form-group">
+                <label class="form-label">Rute</label>
+                <select class="form-select" id="sjRoute"></select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Jadwal</label>
+                <select class="form-select" id="sjSchedule"></select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Tanggal</label>
+                <input type="date" class="form-input" id="sjDate" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Unit</label>
+                <select class="form-select" id="sjUnit">
+                  <option value="1">Unit 1</option>
+                  <option value="2">Unit 2</option>
+                </select>
+              </div>
+              <button class="btn btn-primary" onclick="generateSuratJalan()">📋 Buat Surat Jalan</button>
+            </div>
+          </div>
+        </div>
+        <div id="suratJalanPreview"></div>
+      </div>
+
+      <!-- ===== KEUANGAN ===== -->
+      <div class="page-section" id="section-keuangan">
+        <div class="stats-grid" id="financeStatsGrid"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+          <div class="card">
+            <div class="card-header"><h3 style="font-size:1rem;font-weight:700">📊 Pendapatan per Metode Pembayaran</h3></div>
+            <div class="card-body" id="financeByMethod"></div>
+          </div>
+          <div class="card">
+            <div class="card-header"><h3 style="font-size:1rem;font-weight:700">🏢 Pendapatan per Agen</h3></div>
+            <div class="card-body" id="financeByAgent"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== AUDIT LOG ===== -->
+      <div class="page-section" id="section-auditLog">
+        <div class="card">
+          <div class="card-header" style="display:flex;justify-content:space-between;align-items:center">
+            <h3 style="font-size:1rem;font-weight:700">🔍 Riwayat Aktivitas</h3>
+            <button class="btn btn-outline-silver btn-sm" onclick="renderAuditLog()">🔄 Refresh</button>
+          </div>
+          <div id="auditLogList"></div>
+        </div>
+      </div>
+
+    </div><!-- /admin-content -->
+  </div><!-- /admin-main -->
+</div><!-- /admin-layout -->
+
+<!-- MODAL: Booking Detail -->
+<div class="modal-overlay" id="bookingDetailModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">📋 Detail Pemesanan</div>
+      <button class="modal-close" onclick="closeAdminModal('bookingDetailModal')">✕</button>
+    </div>
+    <div class="modal-body" id="bookingDetailBody"></div>
+    <div class="modal-footer">
+      <button class="btn btn-outline-silver" onclick="closeAdminModal('bookingDetailModal')">Tutup</button>
+      <button class="btn btn-success btn-sm" id="markPaidBtn" onclick="markAsPaid()">✅ Tandai Lunas</button>
+      <button class="btn btn-danger btn-sm" id="cancelBookingBtn" onclick="cancelBooking()">❌ Batalkan</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Reassign Confirm -->
+<div class="modal-overlay" id="reassignModal">
+  <div class="modal modal-sm">
+    <div class="modal-header">
+      <div class="modal-title">🔄 Konfirmasi Pindah Kursi</div>
+      <button class="modal-close" onclick="closeAdminModal('reassignModal')">✕</button>
+    </div>
+    <div class="modal-body" id="reassignBody"></div>
+    <div class="modal-footer">
+      <button class="btn btn-outline-silver" onclick="closeAdminModal('reassignModal')">Batal</button>
+      <button class="btn btn-primary" id="confirmReassignBtn">✅ Konfirmasi Pindah</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Refund Confirm -->
+<div class="modal-overlay" id="refundConfirmModal">
+  <div class="modal modal-sm">
+    <div class="modal-header">
+      <div class="modal-title">💰 Konfirmasi Pengembalian / Pembatalan</div>
+      <button class="modal-close" onclick="closeAdminModal('refundConfirmModal')">✕</button>
+    </div>
+    <div class="modal-body" id="refundConfirmBody"></div>
+    <div class="modal-footer">
+      <button class="btn btn-outline-silver" onclick="closeAdminModal('refundConfirmModal')">Batal</button>
+      <button class="btn btn-danger" id="confirmRefundBtn">✅ Proses Pengembalian</button>
+    </div>
+  </div>
+</div>
+
+<!-- Print Area -->
+<div id="print-area" style="display:none"></div>
+
+<script src="data.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>
