@@ -283,7 +283,7 @@ function renderPassengerForms() {
 
   document.getElementById("passengerForms").innerHTML = currentBooking.passengers.map((p, i) => {
     const opt = (cls, label, icon, left, pr) => `
-      <label style="flex:1;min-width:210px;display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border:2px solid ${p.seatClass === cls ? "#2563EB" : "#E2E8F0"};border-radius:12px;cursor:${left < 1 ? "not-allowed" : "pointer"};opacity:${left < 1 ? 0.5 : 1};background:${p.seatClass === cls ? "#EFF6FF" : "white"}">
+      <label style="flex:1;min-width:210px;display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border:2px solid ${p.seatClass === cls ? "#C9971C" : "#E2E8F0"};border-radius:12px;cursor:${left < 1 ? "not-allowed" : "pointer"};opacity:${left < 1 ? 0.5 : 1};background:${p.seatClass === cls ? "#FFF9E6" : "white"}">
         <input type="radio" name="pClass_${i}" value="${cls}" ${p.seatClass === cls ? "checked" : ""} ${left < 1 ? "disabled" : ""} onchange="onClassChange()" style="margin-top:4px" />
         <span><strong>${icon} ${label}</strong><br/>
         <span style="font-size:0.8rem;color:var(--silver-500)">${Utils.formatCurrency(pr)} • sisa ${left} kursi</span></span>
@@ -560,7 +560,7 @@ function updateSeatSidebar() {
   const { passengers, route } = currentBooking;
   const price = BTM.PRICES[route.id] || {};
   document.getElementById("passengerSeatAssignmentList").innerHTML = passengers.map((p, i) => `
-    <div onclick="setActivePassenger(${i})" style="cursor:pointer;padding:12px;margin-bottom:8px;border-radius:12px;border:2px solid ${i === currentBooking.activePassenger ? "#2563EB" : "#E2E8F0"};background:${i === currentBooking.activePassenger ? "#EFF6FF" : "white"}">
+    <div onclick="setActivePassenger(${i})" style="cursor:pointer;padding:12px;margin-bottom:8px;border-radius:12px;border:2px solid ${i === currentBooking.activePassenger ? "#C9971C" : "#E2E8F0"};background:${i === currentBooking.activePassenger ? "#FFF9E6" : "white"}">
       <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
         <strong style="font-size:0.9rem">${i + 1}. ${Utils.esc(p.name)}</strong>
         ${p.seat ? `<span class="badge badge-gold">${p.seat}</span>` : `<span class="badge badge-secondary">Belum dipilih</span>`}
@@ -736,7 +736,7 @@ function renderGallery() {
       onclick="openLightbox(${i})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openLightbox(${i})}">
       <img src="${Utils.esc(g.src)}" alt="${Utils.esc(g.title)} — Bis Listrik Borneo Trans" loading="lazy" />
       <figcaption>
-        <span class="gallery-tag">${g.cat === "armada" ? "🚌 Armada" : "💺 Interior"}</span>
+        <span class="gallery-tag">${g.cat === "armada" ? "Armada" : "Interior"}</span>
         <strong>${Utils.esc(g.title)}</strong>
         <span>${Utils.esc(g.desc)}</span>
       </figcaption>
@@ -792,13 +792,13 @@ function renderTestimonials() {
   if (!grid) return;
   grid.innerHTML = BTM.TESTIMONIALS.map(t => `
     <div class="testimonial-card animate-fadeInUp">
-      <div class="testimonial-stars">${"⭐".repeat(t.rating)}</div>
+      <div class="testimonial-stars">${"★".repeat(t.rating)}</div>
       <p class="testimonial-text">${t.text}</p>
       <div class="testimonial-author">
         <div class="testimonial-avatar">${t.avatar}</div>
         <div>
           <div class="testimonial-name">${t.name}</div>
-          <div class="testimonial-city">📍 ${t.city}</div>
+          <div class="testimonial-city">${t.city}</div>
         </div>
       </div>
     </div>

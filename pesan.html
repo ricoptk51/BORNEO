@@ -7,7 +7,11 @@
   <title>Pesan Tiket — PO. BORNEO TRANS | Bis Listrik Pontianak ↔ Sintang</title>
   <meta name="description"
     content="Pesan tiket Bis Listrik Borneo Trans rute Pontianak ↔ Sintang. Bayar via Virtual Account, lalu pilih kursi Solitaire Business Class atau Vip Royal Class." />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" />
+  <link rel="stylesheet" href="styles.css?v=3" />
+  <link rel="stylesheet" href="luxe.css?v=1" />
   <link rel="icon"
     href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E⚡%3C/text%3E%3C/svg%3E" />
 </head>
@@ -20,7 +24,7 @@
   <nav id="navbar" class="scrolled" data-fixed="1">
     <div class="navbar-inner">
       <a href="index.html" class="navbar-logo">
-        <div class="logo-icon">⚡</div>
+        <div class="logo-icon" aria-hidden="true">BT</div>
         <div class="logo-text">
           <span class="po-label">PT. BORNEO TRANS MANDIRI</span>
           <span class="po-name">PO. BORNEO TRANS</span>
@@ -28,16 +32,16 @@
         </div>
       </a>
       <div class="navbar-menu">
-        <a href="index.html#beranda" class="nav-link">🏠 Beranda</a>
-        <a href="pesan.html" class="nav-link active">🎫 Pesan Tiket</a>
-        <a href="index.html#menjangkau-kami" class="nav-link">📞 Hubungi Kami</a>
-        <a href="index.html#fasilitas" class="nav-link">⭐ Bis & Fasilitas</a>
-        <a href="index.html#galeri" class="nav-link">🖼️ Galeri</a>
-        <a href="index.html#cek-tiket" class="nav-link">🔍 Cek Tiket</a>
-        <a href="index.html#faq" class="nav-link">❓ FAQ</a>
+        <a href="index.html#beranda" class="nav-link"> Beranda</a>
+        <a href="pesan.html" class="nav-link active"> Pesan Tiket</a>
+        <a href="index.html#menjangkau-kami" class="nav-link"> Hubungi Kami</a>
+        <a href="index.html#fasilitas" class="nav-link"> Bis & Fasilitas</a>
+        <a href="index.html#galeri" class="nav-link"> Galeri</a>
+        <a href="index.html#cek-tiket" class="nav-link"> Cek Tiket</a>
+        <a href="index.html#faq" class="nav-link"> FAQ</a>
       </div>
       <div class="navbar-actions">
-        <button class="btn-admin-nav" onclick="goToAdmin()">🔐 Portal Admin</button>
+        <button class="btn-admin-nav" onclick="goToAdmin()"> Portal Admin</button>
         <button class="hamburger" id="hamburger" aria-label="Buka menu" onclick="toggleMobileMenu()">
           <span></span><span></span><span></span>
         </button>
@@ -46,14 +50,14 @@
   </nav>
 
   <div class="mobile-menu" id="mobileMenu">
-    <a href="index.html#beranda" class="mobile-nav-link">🏠 Beranda</a>
-    <a href="pesan.html" class="mobile-nav-link">🎫 Pesan Tiket</a>
-    <a href="index.html#menjangkau-kami" class="mobile-nav-link">📞 Hubungi Kami & Kantor</a>
-    <a href="index.html#fasilitas" class="mobile-nav-link">⭐ Armada & Fasilitas</a>
-    <a href="index.html#galeri" class="mobile-nav-link">🖼️ Galeri Armada</a>
-    <a href="index.html#cek-tiket" class="mobile-nav-link">🔍 Cek Status Tiket</a>
-    <a href="index.html#faq" class="mobile-nav-link">❓ FAQ</a>
-    <button class="btn-primary btn mt-2" onclick="goToAdmin()" style="width:100%">🔐 Portal Admin & Agen</button>
+    <a href="index.html#beranda" class="mobile-nav-link"> Beranda</a>
+    <a href="pesan.html" class="mobile-nav-link"> Pesan Tiket</a>
+    <a href="index.html#menjangkau-kami" class="mobile-nav-link"> Hubungi Kami & Kantor</a>
+    <a href="index.html#fasilitas" class="mobile-nav-link"> Armada & Fasilitas</a>
+    <a href="index.html#galeri" class="mobile-nav-link"> Galeri Armada</a>
+    <a href="index.html#cek-tiket" class="mobile-nav-link"> Cek Status Tiket</a>
+    <a href="index.html#faq" class="mobile-nav-link"> FAQ</a>
+    <button class="btn-primary btn mt-2" onclick="goToAdmin()" style="width:100%"> Portal Admin & Agen</button>
   </div>
 
   <!-- ======== BOOKING SECTION ======== -->
@@ -97,9 +101,7 @@
       <div id="bookingStep1">
         <div class="card">
           <div class="card-header">
-            <h3 style="font-size:1.1rem;font-weight:700;display:flex;align-items:center;gap:8px">
-              🔍 Cari Jadwal Bus
-            </h3>
+            <h3 style="font-size:1.1rem;font-weight:700;display:flex;align-items:center;gap:8px"> Cari Jadwal Bus </h3>
           </div>
           <div class="card-body">
             <form id="searchForm" onsubmit="searchSchedules(event)">
@@ -138,7 +140,7 @@
                   <datalist id="dropoffList"></datalist>
                 </div>
               </div>
-              <button type="submit" class="btn btn-primary btn-lg">🔎 Cari Jadwal</button>
+              <button type="submit" class="btn btn-primary btn-lg"> Cari Jadwal</button>
             </form>
           </div>
         </div>
@@ -156,7 +158,7 @@
           <div>
             <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
               <div>
-                <h3 style="font-size:1.2rem;font-weight:800">👤 Data Penumpang & Kelas Kursi</h3>
+                <h3 style="font-size:1.2rem;font-weight:800"> Data Penumpang & Kelas Kursi</h3>
                 <p style="font-size:0.85rem;color:var(--silver-500);margin:0" id="step2ScheduleSummary"></p>
               </div>
               <button class="btn btn-outline-silver btn-sm" onclick="goToStep(1)">← Ganti Jadwal</button>
@@ -166,7 +168,7 @@
             <div id="passengerForms"></div>
 
             <div class="card" style="margin-top:20px;padding:20px">
-              <h4 style="font-weight:700;margin-bottom:16px;font-size:0.95rem">📍 Lokasi Naik & Turun</h4>
+              <h4 style="font-weight:700;margin-bottom:16px;font-size:0.95rem"> Lokasi Naik & Turun</h4>
               <div class="form-group" style="margin-bottom:16px">
                 <label class="form-label">Titik Naik (Tempat naik bus) *</label>
                 <input type="text" class="form-input" id="checkoutBoarding" list="checkoutBoardingList"
@@ -197,7 +199,7 @@
           <div>
             <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
               <div>
-                <h3 style="font-size:1.2rem;font-weight:800">💳 Pembayaran Virtual Account</h3>
+                <h3 style="font-size:1.2rem;font-weight:800"> Pembayaran Virtual Account</h3>
                 <p style="font-size:0.85rem;color:var(--silver-500);margin:0">
                   Bayar dulu lewat Virtual Account untuk mengunci tiket Anda
                 </p>
@@ -219,23 +221,23 @@
               <!-- Bank Selection -->
               <div class="va-bank-grid" id="vaBankSelector">
                 <div class="va-bank-btn selected" data-bank="BCA" onclick="selectVABank('BCA')">
-                  <div class="bank-logo">🏦</div>
+                  <div class="bank-logo"></div>
                   <div class="bank-name">BCA VA</div>
                 </div>
                 <div class="va-bank-btn" data-bank="Mandiri" onclick="selectVABank('Mandiri')">
-                  <div class="bank-logo">🏦</div>
+                  <div class="bank-logo"></div>
                   <div class="bank-name">Mandiri VA</div>
                 </div>
                 <div class="va-bank-btn" data-bank="BRI" onclick="selectVABank('BRI')">
-                  <div class="bank-logo">🏦</div>
+                  <div class="bank-logo"></div>
                   <div class="bank-name">BRI VA</div>
                 </div>
                 <div class="va-bank-btn" data-bank="BNI" onclick="selectVABank('BNI')">
-                  <div class="bank-logo">🏦</div>
+                  <div class="bank-logo"></div>
                   <div class="bank-name">BNI VA</div>
                 </div>
                 <div class="va-bank-btn" data-bank="Permata" onclick="selectVABank('Permata')">
-                  <div class="bank-logo">🏦</div>
+                  <div class="bank-logo"></div>
                   <div class="bank-name">Permata VA</div>
                 </div>
               </div>
@@ -251,21 +253,21 @@
                     <div style="font-size:0.75rem;opacity:0.75;text-transform:uppercase">Nomor Virtual Account</div>
                     <div class="va-number-highlight" id="vaNumberDisplay">88012-9539-2233-101</div>
                   </div>
-                  <button class="va-copy-pill" onclick="copyVANumber()">📋 Salin Nomor VA</button>
+                  <button class="va-copy-pill" onclick="copyVANumber()"> Salin Nomor VA</button>
                 </div>
                 <div class="va-row" style="border-top:1px dashed rgba(255,255,255,0.2);padding-top:14px;margin-top:14px">
                   <div>
                     <div style="font-size:0.75rem;opacity:0.75;text-transform:uppercase">Total Tagihan (Transfer Pas)</div>
                     <div class="va-amount-highlight" id="vaAmountDisplay">Rp 0</div>
                   </div>
-                  <button class="va-copy-pill" onclick="copyVAAmount()">📋 Salin Nominal</button>
+                  <button class="va-copy-pill" onclick="copyVAAmount()"> Salin Nominal</button>
                 </div>
               </div>
 
               <!-- Payment Instructions Accordion -->
               <div class="va-accordion">
                 <div class="va-accordion-header" onclick="toggleVAInstruction('mbanking')">
-                  <span>📱 Cara Bayar via Mobile Banking</span>
+                  <span> Cara Bayar via Mobile Banking</span>
                   <span id="vaIconMbanking">▼</span>
                 </div>
                 <div class="va-accordion-body" id="vaBodyMbanking">
@@ -281,7 +283,7 @@
 
               <div class="va-accordion">
                 <div class="va-accordion-header" onclick="toggleVAInstruction('atm')">
-                  <span>🏧 Cara Bayar via ATM</span>
+                  <span> Cara Bayar via ATM</span>
                   <span id="vaIconAtm">▶</span>
                 </div>
                 <div class="va-accordion-body hidden" id="vaBodyAtm">
@@ -301,11 +303,8 @@
               </label>
 
               <div style="margin-top:24px">
-                <button class="btn btn-primary btn-lg w-full" id="confirmPayBtn" onclick="confirmVAPayment()">
-                  💳 Bayar Sekarang →
-                </button>
-                <p style="font-size:0.78rem;color:var(--silver-400);text-align:center;margin-top:8px">
-                  ⚡ Setelah pembayaran masuk, Anda langsung bisa <strong>memilih nomor kursi</strong> bus.
+                <button class="btn btn-primary btn-lg w-full" id="confirmPayBtn" onclick="confirmVAPayment()"> Bayar Sekarang → </button>
+                <p style="font-size:0.78rem;color:var(--silver-400);text-align:center;margin-top:8px"> Setelah pembayaran masuk, Anda langsung bisa <strong>memilih nomor kursi</strong> bus.
                 </p>
               </div>
             </div>
@@ -320,7 +319,7 @@
       <div id="bookingStep4" class="hidden">
         <!-- Banner Success Paid -->
         <div class="step-success-banner">
-          <div style="font-size:2rem">✅</div>
+          <div style="font-size:2rem"></div>
           <div>
             <h4>Pembayaran berhasil, kursi dikunci!</h4>
             <p style="margin:0;font-size:0.85rem;opacity:0.9">
@@ -334,12 +333,12 @@
           <div>
             <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:12px">
               <div>
-                <h3 style="font-size:1.15rem;font-weight:800">💺 Pilih Kursi Anda</h3>
+                <h3 style="font-size:1.15rem;font-weight:800"> Pilih Kursi Anda</h3>
                 <p style="font-size:0.85rem;color:var(--silver-500);margin:0" id="selectedScheduleInfoSeat"></p>
               </div>
               <div class="unit-selector" id="unitSelector">
-                <button class="unit-btn active" id="unit1Btn" onclick="selectUnit(1)">🚌 Unit 1</button>
-                <button class="unit-btn locked" id="unit2Btn" onclick="selectUnit(2)">🔒 Unit 2 (Terkunci)</button>
+                <button class="unit-btn active" id="unit1Btn" onclick="selectUnit(1)"> Unit 1</button>
+                <button class="unit-btn locked" id="unit2Btn" onclick="selectUnit(2)"> Unit 2 (Terkunci)</button>
               </div>
             </div>
 
@@ -376,15 +375,12 @@
                 </div>
               </div>
               <div class="card-footer">
-                <button class="btn btn-primary w-full" id="confirmSeatsBtn" onclick="confirmSeatSelection()" disabled>
-                  ✅ Selesai & Terbitkan Tiket →
-                </button>
+                <button class="btn btn-primary w-full" id="confirmSeatsBtn" onclick="confirmSeatSelection()" disabled> Selesai & Terbitkan Tiket → </button>
               </div>
             </div>
 
             <div style="margin-top:16px;padding:16px;background:#FFFBEB;border-radius:var(--radius-lg);border:1px solid #FCD34D">
-              <p style="font-size:0.8rem;color:#92400E;margin:0">
-                ℹ️ <strong>Ketentuan Kursi:</strong> Kursi <strong>A1 & A2</strong> hanya untuk Solitaire Business Class. Kursi <strong>B1 s/d F3</strong> untuk Vip Royal Class.
+              <p style="font-size:0.8rem;color:#92400E;margin:0"> ℹ <strong>Ketentuan Kursi:</strong> Kursi <strong>A1 & A2</strong> hanya untuk Solitaire Business Class. Kursi <strong>B1 s/d F3</strong> untuk Vip Royal Class.
               </p>
             </div>
           </div>
@@ -394,7 +390,7 @@
       <!-- STEP 5: Official E-Ticket -->
       <div id="bookingStep5" class="hidden">
         <div style="text-align:center;margin-bottom:32px">
-          <div style="font-size:4rem;margin-bottom:12px">🎉</div>
+          <div style="font-size:4rem;margin-bottom:12px"></div>
           <h2 style="font-size:1.8rem;font-weight:800;color:var(--success)">Pemesanan Berhasil!</h2>
           <p style="color:var(--silver-500)">
             Pembayaran lunas dan kursi Anda sudah terdaftar. e-tiket Anda siap diunduh atau dicetak.
@@ -402,10 +398,10 @@
         </div>
         <div id="eticketContainer"></div>
         <div style="display:flex;gap:12px;justify-content:center;margin-top:24px;flex-wrap:wrap">
-          <button class="btn btn-primary btn-lg" onclick="downloadEticket()">📥 Unduh e-tiket (PDF)</button>
-          <button class="btn btn-outline-magenta btn-lg" onclick="printEticket()">🖨️ Cetak Tiket</button>
-          <a id="shareEticketWABtn" href="#" target="_blank" class="btn btn-success btn-lg">💬 Kirim ke WhatsApp</a>
-          <button class="btn btn-ghost btn-lg" onclick="resetBooking()">🔄 Pesan Tiket Baru</button>
+          <button class="btn btn-primary btn-lg" onclick="downloadEticket()"> Unduh e-tiket (PDF)</button>
+          <button class="btn btn-outline-magenta btn-lg" onclick="printEticket()"> Cetak Tiket</button>
+          <a id="shareEticketWABtn" href="#" target="_blank" class="btn btn-success btn-lg"> Kirim ke WhatsApp</a>
+          <button class="btn btn-ghost btn-lg" onclick="resetBooking()"> Pesan Tiket Baru</button>
         </div>
       </div>
     </div>
@@ -430,16 +426,15 @@
   <div class="modal-overlay" id="refundModal">
     <div class="modal">
       <div class="modal-header">
-        <div class="modal-title">💰 Pengajuan Refund / Pembatalan Tiket</div>
-        <button class="modal-close" onclick="closeModal('refundModal')">✕</button>
+        <div class="modal-title"> Pengajuan Refund / Pembatalan Tiket</div>
+        <button class="modal-close" onclick="closeModal('refundModal')"></button>
       </div>
       <div class="modal-body">
         <div
           style="background:#FEF2F2;border:1px solid #FCA5A5;border-radius:var(--radius-lg);padding:16px;margin-bottom:20px">
-          <p style="font-size:0.875rem;color:#991B1B;font-weight:600">⚠️ Refund dan pembatalan hanya bisa diproses
-            lewat Contact Center Borneo Trans, tidak lewat website.</p>
+          <p style="font-size:0.875rem;color:#991B1B;font-weight:600"> Refund dan pembatalan hanya bisa diproses lewat Contact Center Borneo Trans, tidak lewat website.</p>
         </div>
-        <h4 style="font-weight:700;margin-bottom:16px">📋 Biaya pembatalan:</h4>
+        <h4 style="font-weight:700;margin-bottom:16px"> Biaya pembatalan:</h4>
         <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:20px">
           <div
             style="padding:14px 16px;background:var(--silver-50);border-radius:var(--radius-md);border-left:4px solid var(--success);font-size:0.875rem">
@@ -457,7 +452,7 @@
             <span style="color:var(--silver-600)">Tiket hangus, tidak bisa direfund</span>
           </div>
         </div>
-        <h4 style="font-weight:700;margin-bottom:12px">📋 Yang perlu disiapkan:</h4>
+        <h4 style="font-weight:700;margin-bottom:12px"> Yang perlu disiapkan:</h4>
         <ul style="display:flex;flex-direction:column;gap:6px;margin-bottom:20px">
           <li style="font-size:0.875rem;display:flex;gap:8px"><span>•</span> Kode booking (format: BTM-xxxxxxxxxx)
           </li>
@@ -469,18 +464,18 @@
       </div>
       <div class="modal-footer">
         <button class="btn btn-outline-silver" onclick="closeModal('refundModal')">Tutup</button>
-        <a id="refundWABtn" href="#" target="_blank" class="btn btn-success">💬 Hubungi via WhatsApp</a>
+        <a id="refundWABtn" href="#" target="_blank" class="btn btn-success"> Hubungi via WhatsApp</a>
       </div>
     </div>
   </div>
 
-  <a href="#" id="waFloat" class="wa-float" target="_blank" rel="noopener" aria-label="Chat WhatsApp">💬</a>
+  <a href="#" id="waFloat" class="wa-float" target="_blank" rel="noopener" aria-label="Chat WhatsApp"></a>
 
   <div class="modal-overlay" id="legalModal">
     <div class="modal">
       <div class="modal-header">
         <div class="modal-title" id="legalTitle"></div><button class="modal-close" aria-label="Tutup"
-          onclick="closeModal('legalModal')">✕</button>
+          onclick="closeModal('legalModal')"></button>
       </div>
       <div class="modal-body" id="legalBody"></div>
     </div>

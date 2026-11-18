@@ -1,8 +1,8 @@
 /* ============================================================
    PO. BORNEO TRANS MANDIRI - MAIN STYLESHEET (styles.css)
-   Tema: MINIMALIS — Netral (abu-abu) + 1 aksen biru tua.
-   - Netral:  #F8FAFC s/d #0F172A (skala silver)
-   - Aksen:   biru tua #2563EB (tombol, tautan, penanda aktif)
+   Tema: TERANG — Emas (utama) + Ungu + Silver/Abu-abu.
+   - Netral:  #F8FAFC s/d #0F172A (skala silver / abu-abu)
+   - Aksen:   emas #B8860B / #C9971C, ungu #7C4DD6, silver #CBD5E1
    - Status:  hijau = tersedia/lunas, kuning = perhatian, merah = gagal
    ============================================================ */
 
@@ -22,31 +22,45 @@
   --silver-800: #1E293B;
   --silver-900: #0F172A;
 
-  /* Golden Accent -> dipakai sebagai AKSEN BIRU (tema minimalis) */
-  --gold-100: #DBEAFE;
-  --gold-200: #BFDBFE;
-  --gold-300: #93C5FD;
-  --gold-400: #60A5FA;
-  --gold-500: #2563EB;
-  --gold-600: #1D4ED8;
-  --gold-700: #1E40AF;
+  /* Emas (aksen utama) */
+  --gold-100: #FBF1D3;
+  --gold-200: #F5E0A3;
+  --gold-300: #EBCB6F;
+  --gold-400: #DDB445;
+  --gold-500: #C9971C;
+  --gold-600: #A87A12;
+  --gold-700: #7F5C0E;
 
-  /* Magenta Accent -> juga dipetakan ke aksen biru agar seragam */
-  --magenta-50: #EFF6FF;
-  --magenta-100: #DBEAFE;
-  --magenta-200: #BFDBFE;
-  --magenta-300: #93C5FD;
-  --magenta-400: #60A5FA;
-  --magenta-500: #2563EB;
-  --magenta-600: #1D4ED8;
-  --magenta-700: #1E40AF;
-  --magenta-800: #1E3A8A;
+  /* Aksen utama = EMAS (nama variabel lama --magenta dipertahankan) */
+  --magenta-50: #FFF9E6;
+  --magenta-100: #FBF1D3;
+  --magenta-200: #F5E0A3;
+  --magenta-300: #EBCB6F;
+  --magenta-400: #DDB445;
+  --magenta-500: #B8860B;
+  --magenta-600: #9A6F0B;
+  --magenta-700: #7F5C0E;
+  --magenta-800: #5F440A;
+
+  /* Ungu (aksen kedua, menggantikan pink) */
+  --purple-50: #F5F0FF;
+  --purple-100: #EBE0FF;
+  --purple-200: #D6C2FA;
+  --purple-300: #B99BF2;
+  --purple-400: #9A72E6;
+  --purple-500: #7C4DD6;
+  --purple-600: #6538B8;
+  --purple-700: #502C92;
+
+  /* Silver metalik */
+  --silver-metal: linear-gradient(135deg, #F8FAFC 0%, #CBD5E1 45%, #F1F5F9 70%, #94A3B8 100%);
+  --silver-line: linear-gradient(90deg, transparent, #CBD5E1 15%, #94A3B8 50%, #CBD5E1 85%, transparent);
 
   /* Status Colors */
   --success: #10B981;
   --warning: #F59E0B;
   --danger: #EF4444;
-  --info: #3B82F6;
+  --info: #6538B8;
 
   /* Typography */
   --font-primary: 'Plus Jakarta Sans', 'Inter', sans-serif;
@@ -300,8 +314,8 @@ ol {
 }
 
 .badge-info {
-  background: #DBEAFE;
-  color: #1E40AF;
+  background: #EBE0FF;
+  color: #502C92;
 }
 
 .badge-secondary {
@@ -345,7 +359,7 @@ ol {
 .btn-primary {
   background: linear-gradient(135deg, var(--magenta-500), var(--magenta-700));
   color: white;
-  box-shadow: 0 4px 12px rgba(192, 38, 211, 0.35);
+  box-shadow: 0 4px 12px rgba(201, 151, 28, 0.35);
 }
 
 .btn-primary:hover {
@@ -642,7 +656,7 @@ ol {
   font-weight: 700;
   transition: all var(--transition-base);
   border: none;
-  box-shadow: 0 4px 12px rgba(192, 38, 211, 0.3);
+  box-shadow: 0 4px 12px rgba(201, 151, 28, 0.30);
 }
 
 .btn-admin-nav:hover {
@@ -927,7 +941,7 @@ ol {
 }
 
 .facility-card-header.sleeper-header {
-  background: linear-gradient(135deg, #1E1B4B, #4C1D95);
+  background: linear-gradient(135deg, #A87A12, #6538B8);
 }
 
 .facility-class-badge {
@@ -1750,9 +1764,9 @@ ol {
 }
 
 .toilet-box {
-  background: #DBEAFE;
-  color: #1E40AF;
-  border: 2px solid #93C5FD;
+  background: #EBE0FF;
+  color: #502C92;
+  border: 2px solid #B99BF2;
 }
 
 /* ---- COUNTDOWN TIMER ---- */
@@ -1934,7 +1948,7 @@ ol {
 }
 
 .eticket-header {
-  background: linear-gradient(135deg, #0F172A, #1E1B4B, #4A1D96);
+  background: linear-gradient(135deg, #334155, #A87A12, #6538B8);
   padding: 28px;
   color: white;
   text-align: center;
@@ -2046,7 +2060,7 @@ ol {
 
 /* ---- CHECK STATUS ---- */
 .check-status-hero {
-  background: linear-gradient(135deg, #0F172A, #1E1B4B);
+  background: linear-gradient(135deg, #334155, #A87A12);
   padding: 60px 0;
   text-align: center;
   color: white;
@@ -2320,7 +2334,7 @@ ol {
 .admin-nav-item.active {
   background: linear-gradient(135deg, var(--magenta-600), var(--magenta-800));
   color: white;
-  box-shadow: 0 4px 12px rgba(192, 38, 211, 0.3);
+  box-shadow: 0 4px 12px rgba(201, 151, 28, 0.30);
 }
 
 .admin-nav-item .nav-icon {
@@ -2434,7 +2448,7 @@ ol {
 }
 
 .stat-icon.info {
-  background: #DBEAFE;
+  background: #EBE0FF;
 }
 
 .stat-value {
@@ -2925,7 +2939,7 @@ ol {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #0F172A 0%, #1E1B4B 50%, #4A1D96 100%);
+  background: linear-gradient(135deg, #F8FAFC 0%, #FBF1D3 50%, #EBE0FF 100%);
   padding: 24px;
 }
 
@@ -3216,7 +3230,7 @@ ol {
 
 /* ---- REACH US (KEMUDAHAN MENJANGKAU KAMI) ---- */
 .reach-section {
-  background: linear-gradient(180deg, #0B0F19 0%, #111827 50%, #1E1B4B 100%);
+  background: linear-gradient(180deg, #1F2937 0%, #334155 55%, #502C92 100%);
   color: white;
   position: relative;
   overflow: hidden;
@@ -3426,7 +3440,7 @@ ol {
 }
 
 .bus-badge-toilet {
-  background: #0284C7;
+  background: #6538B8;
   color: white;
   font-size: 0.72rem;
   font-weight: 800;
@@ -3521,7 +3535,7 @@ ol {
 }
 
 .va-detail-box {
-  background: linear-gradient(135deg, #1E1B4B 0%, #312E81 50%, #4C1D95 100%);
+  background: linear-gradient(135deg, #F8FAFC 0%, #FBF1D3 100%);
   color: white;
   border-radius: 16px;
   padding: 24px;
@@ -3886,15 +3900,21 @@ ol {
 /* ============================================================ */
 
 /* ---- 1. TOMBOL: rata, tanpa gradasi & glow ---- */
-.btn-primary,
 .btn-gold {
-  background: var(--magenta-500);
+  background: var(--gold-600);
   box-shadow: none;
 }
-.btn-primary:hover,
 .btn-gold:hover {
-  background: var(--magenta-600);
-  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.15);
+  background: var(--gold-700);
+  box-shadow: 0 2px 6px rgba(127, 92, 14, 0.25);
+}
+.btn-primary {
+  background: var(--gold-600);
+  box-shadow: none;
+}
+.btn-primary:hover {
+  background: var(--gold-700);
+  box-shadow: 0 2px 6px rgba(127, 92, 14, 0.25);
 }
 .btn-admin-nav {
   background: var(--magenta-500);
@@ -4053,14 +4073,14 @@ ol {
 .quick-search-card .form-input:focus,
 .quick-search-card .form-select:focus {
   border-color: var(--magenta-500);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+  box-shadow: 0 0 0 3px rgba(201, 151, 28, 0.20);
 }
 
 /* ---- 5. FOKUS INPUT: cincin biru halus ---- */
 .form-input:focus,
 .form-select:focus {
   border-color: var(--magenta-500);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+  box-shadow: 0 0 0 3px rgba(201, 151, 28, 0.20);
 }
 
 /* ---- 6. KARTU FASILITAS: kepala terang ---- */
@@ -4186,7 +4206,7 @@ ol {
 }
 .login-card .form-input:focus {
   border-color: var(--magenta-500);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+  box-shadow: 0 0 0 3px rgba(201, 151, 28, 0.20);
 }
 .login-title {
   color: var(--silver-900);
@@ -4278,7 +4298,7 @@ ol {
 .va-bank-btn.selected {
   border-color: var(--magenta-500);
   background: var(--magenta-50);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+  box-shadow: 0 0 0 3px rgba(201, 151, 28, 0.20);
 }
 
 /* ---- 13. LANGKAH / TAB / PILIHAN AKTIF ---- */
@@ -4297,12 +4317,12 @@ ol {
 .schedule-card:hover,
 .schedule-card.selected {
   border-color: var(--magenta-400);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+  box-shadow: 0 0 0 3px rgba(201, 151, 28, 0.20);
 }
 .payment-option:hover,
 .payment-option.selected {
   border-color: var(--magenta-400);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+  box-shadow: 0 0 0 3px rgba(201, 151, 28, 0.20);
 }
 .payment-option.selected .payment-radio-custom {
   border-color: var(--magenta-500);
@@ -4466,4 +4486,82 @@ ol {
   .hamburger {
     display: flex;
   }
+}
+
+
+/* ============================================================ */
+/* HALAMAN UTAMA: foto latar hero + aksen silver                 */
+/* ============================================================ */
+.hero {
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.94) 0%, rgba(255, 252, 243, 0.84) 45%, rgba(248, 250, 252, 0.45) 100%),
+    url('assets/images/hero-bg.jpeg?v=2') center/cover no-repeat !important;
+  border-bottom: 3px solid transparent;
+  border-image: var(--silver-line) 1;
+}
+.hero-badge {
+  background: var(--gold-100);
+  border-color: var(--gold-300);
+  color: var(--gold-700);
+}
+.hero-title .gradient-text {
+  -webkit-text-fill-color: var(--gold-600);
+  color: var(--gold-600);
+}
+.hero-stat {
+  background: var(--silver-metal);
+  border: 1px solid var(--silver-300);
+  border-radius: var(--radius-lg);
+  padding: 10px 18px;
+  box-shadow: 0 2px 8px rgba(51, 65, 85, 0.12);
+}
+.quick-search-card {
+  border: 1px solid var(--silver-300);
+  border-top: 4px solid var(--gold-500);
+  box-shadow: 0 12px 32px rgba(51, 65, 85, 0.18);
+}
+
+/* Navbar: garis silver di bawah */
+#navbar {
+  border-bottom: 2px solid var(--silver-300);
+}
+
+/* Judul seksi: garis silver pendek + emas */
+.section-header::after {
+  content: '';
+  display: block;
+  width: 96px;
+  height: 4px;
+  margin: 14px auto 0;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, var(--silver-300), var(--gold-500), var(--silver-300));
+}
+
+/* Kartu: bingkai silver, hover jadi emas */
+.facility-card,
+.reach-card,
+.faq-item,
+.gallery-item {
+  border: 1px solid var(--silver-300);
+}
+.facility-card:hover,
+.reach-card:hover,
+.faq-item:hover {
+  border-color: var(--gold-400);
+}
+.facility-class-badge,
+.badge-secondary {
+  background: var(--silver-metal);
+  color: var(--silver-800);
+  border: 1px solid var(--silver-400);
+}
+
+/* Footer: garis silver di atas */
+.footer-grid {
+  border-top: 3px solid transparent;
+  border-image: var(--silver-line) 1;
+  padding-top: 32px;
+}
+.footer-bottom {
+  border-top: 1px solid var(--silver-400);
 }

@@ -235,7 +235,7 @@ function renderPaymentDonut(bookings) {
   const paid = bookings.filter(b => b.paymentStatus === "paid");
   const rows = vaBankRevenue(paid).filter(r => r.count > 0);
   const total = paid.length || 1;
-  const colors = ["#2563EB", "#0284C7", "#10B981", "#EA580C", "#64748B", "#93C5FD"];
+  const colors = ["#C9971C", "#7C4DD6", "#94A3B8", "#10B981", "#B99BF2", "#EBCB6F"];
   let offset = 0;
   const segs = rows.map((r, i) => {
     const v = (r.count / total) * 100;
